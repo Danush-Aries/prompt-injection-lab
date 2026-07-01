@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}prompt-injection-lab{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <style>
+    body { background: #0a0e14; color: #c9d1d9; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .glow { text-shadow: 0 0 18px rgba(56,189,248,.35); }
+    .card { background:#0f1620; border:1px solid #1f2a37; }
+    .card:hover { border-color:#38bdf8; box-shadow:0 0 24px rgba(56,189,248,.12); }
+    a { color:#38bdf8; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <header class="border-b border-[#1f2a37] px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-lg font-bold glow">🧪 prompt-injection-lab</a>
+    <span class="text-xs text-slate-500">offline · no API key · MockLLM</span>
+  </header>
+  <main class="max-w-5xl mx-auto px-6 py-8">{% block body %}{% endblock %}</main>
+  <footer class="max-w-5xl mx-auto px-6 py-10 text-xs text-slate-600">
+    Educational use only. Exploit these deliberately-vulnerable apps, then defend them.
+  </footer>
+</body>
+</html>

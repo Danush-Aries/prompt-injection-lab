@@ -1,0 +1,35 @@
+[project]
+name = "prompt-injection-lab"
+version = "0.1.0"
+description = "Hands-on, offline-first lab to exploit and then defend AI agents against prompt injection, RAG poisoning, tool hijacking, and MCP tool poisoning."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Danush Shankar" }]
+keywords = ["prompt-injection", "llm-security", "ai-security", "ctf", "mcp", "rag", "agent-security"]
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+# Real local model backend (no API key) — optional; the default MockLLM needs nothing.
+ollama = ["httpx>=0.27"]
+openai = ["httpx>=0.27"]
+dev = ["pytest>=8.0", "httpx>=0.27"]
+
+[project.scripts]
+pilab = "pilab.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pilab"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

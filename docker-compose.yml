@@ -1,0 +1,10 @@
+services:
+  lab:
+    build: .
+    ports:
+      - "8000:8000"
+    # Default backend is the offline MockLLM — no API key, no network needed.
+    # To use a local Ollama on the host instead, uncomment:
+    # environment:
+    #   PILAB_LLM_BACKEND: ollama
+    #   PILAB_OLLAMA_HOST: http://host.docker.internal:11434
