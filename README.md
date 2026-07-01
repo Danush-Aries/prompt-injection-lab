@@ -54,14 +54,10 @@ on a plane. Want realism? Point it at a local model with one env var (see [below
 ## Quickstart
 
 ```bash
-# with uv (recommended)
-uvx --from prompt-injection-lab pilab serve       # → http://127.0.0.1:8000
-
-# or from source
 git clone https://github.com/Danush-Aries/prompt-injection-lab
 cd prompt-injection-lab
-pip install -e .
-pilab serve
+pip install -e .        # or: uv pip install -e .
+pilab serve             # → http://127.0.0.1:8000
 ```
 
 Prefer Docker?
