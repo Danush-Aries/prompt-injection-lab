@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ ch.title }} — prompt-injection-lab{% endblock %}
+{% block body %}
+<a href="/" class="text-xs text-slate-500">← all levels</a>
+<div class="grid md:grid-cols-2 gap-6 mt-3">
+
+  <section class="card rounded-xl p-5">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-xs px-2 py-0.5 rounded bg-[#132030] text-sky-300">{{ ch.difficulty }}</span>
+      <span class="text-xs text-slate-500">{{ ch.owasp }}</span>
+    </div>
+    <h1 class="text-xl font-bold text-slate-100 mb-3">{{ ch.title }}</h1>
+    <div class="text-sm text-slate-300 space-y-2 whitespace-pre-line">{{ ch.description }}</div>
+    <details class="mt-4 text-sm">
+      <summary class="cursor-pointer text-sky-400">Show hint</summary>
+      <p class="text-slate-400 mt-2">{{ ch.hint }}</p>
+    </details>
+  </section>
+
+  <section class="card rounded-xl p-5 flex flex-col">
+    <form hx-post="/level/{{ ch.id }}/toggle" hx-target="#transcript" hx-swap="innerHTML"
+          class="flex items-center justify-between mb-3">
+      <span class="text-sm text-slate-400">Defense</span>
+      <label class="inline-flex items-center gap-2 cursor-pointer text-sm">
+        <input type="checkbox" name="defense" value="on"
+               onchange="this.form.requestSubmit()"
+               {% if defense_on %}checked{% endif %}>
+        <span class="text-slate-300">reference guardrail</span>
+      </label>
+    </form>
+
+    <div id="transcript" class="flex-1 bg-[#070b10] rounded-lg p-3 text-sm h-72 overflow-y-auto">
+      {% include "_transcript.html" %}
+    </div>
+
+    <form hx-post="/level/{{ ch.id }}/send" hx-target="#transcript" hx-swap="innerHTML"
+          hx-on::after-request="this.reset()" class="mt-3 flex gap-2">
+      <input type="hidden" name="defense" value="{{ 'on' if defense_on else 'off' }}">
+      <input name="message" autocomplete="off" placeholder="Type your attack…"
+             class="flex-1 bg-[#0b1220] border border-[#1f2a37] rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-sky-500">
+      <button class="bg-sky-600 hover:bg-sky-500 text-white rounded px-4 py-2 text-sm">Send</button>
+    </form>
+    <p class="text-xs text-slate-600 mt-2">Tip: solve it undefended, then toggle the guardrail and retry.</p>
+  </section>
+</div>
+{% endblock %}

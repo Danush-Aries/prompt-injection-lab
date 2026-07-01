@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="mb-10">
+  <h1 class="text-3xl font-bold glow mb-3">Exploit it. Then defend it.</h1>
+  <p class="text-slate-400 max-w-2xl">
+    Eight hands-on levels covering prompt injection, jailbreaks, encoding bypass, RAG
+    poisoning, indirect injection, tool hijacking, and MCP tool poisoning. Break each one,
+    then flip the defense on and watch your exploit die.
+  </p>
+</section>
+
+<div class="grid sm:grid-cols-2 gap-4">
+  {% for c in levels %}
+  <a href="/level/{{ c.id }}" class="card rounded-xl p-5 block transition">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs px-2 py-0.5 rounded bg-[#132030] text-sky-300">{{ c.difficulty }}</span>
+      <span class="text-xs text-slate-500">{{ c.category }}</span>
+    </div>
+    <h2 class="font-bold text-slate-100">{{ loop.index }}. {{ c.title }}</h2>
+    <p class="text-xs text-slate-500 mt-1">{{ c.owasp }}</p>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

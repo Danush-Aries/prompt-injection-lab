@@ -1,0 +1,19 @@
+{% if won %}
+<div class="mb-3 rounded bg-emerald-900/40 border border-emerald-600 text-emerald-300 px-3 py-2">
+  🚩 <b>Solved!</b> The exploit landed.
+  {% if not ch.defended %}Now toggle the defense and try the same payload.{% else %}
+  …wait, this shouldn't happen with the defense on!{% endif %}
+</div>
+{% endif %}
+{% if not history %}
+  <p class="text-slate-600">The agent is waiting. Send your first message…</p>
+{% endif %}
+{% for role, text in history %}
+  {% if role == "user" %}
+    <div class="mb-2"><span class="text-sky-400">you&gt;</span>
+      <span class="text-slate-300 whitespace-pre-wrap">{{ text }}</span></div>
+  {% else %}
+    <div class="mb-3"><span class="text-fuchsia-400">bot&gt;</span>
+      <span class="text-slate-200 whitespace-pre-wrap">{{ text }}</span></div>
+  {% endif %}
+{% endfor %}
