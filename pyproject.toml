@@ -5,7 +5,7 @@ description = "Hands-on, offline-first lab to exploit and then defend AI agents 
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Danush Shankar" }]
+authors = [{ name = "Dhanush Shankar" }]
 keywords = ["prompt-injection", "llm-security", "ai-security", "ctf", "mcp", "rag", "agent-security"]
 dependencies = [
     "fastapi>=0.110",

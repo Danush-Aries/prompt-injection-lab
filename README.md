@@ -134,4 +134,4 @@ build it right.
 
 ## License
 
-[MIT](LICENSE) © Danush Shankar
+[MIT](LICENSE) © Dhanush Shankar
